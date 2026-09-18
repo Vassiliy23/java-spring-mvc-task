@@ -13,7 +13,6 @@ import java.util.List;
 public class CarsController {
 
     private CarService carService;
-    private List<Car> cars;
 
     public CarsController(CarService carService) {
         this.carService = carService;
@@ -21,8 +20,7 @@ public class CarsController {
 
     @GetMapping(value = "/cars")
     public String cars(@RequestParam(defaultValue = "5") int count, Model model) {
-        cars = carService.getCars(count);
-        model.addAttribute("cars", cars);
+        model.addAttribute("cars", carService.getCars(count));
         return "cars";
     }
 }
